@@ -7,14 +7,13 @@
   "author": "Maciej Szmida <maciek.bmg@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "start": "yarn run build && node build/index.js"
+    "build-srv": "babel server/src/ --out-dir server/build/ --ignore node_modules",
+    "start-srv": "node server/build/index.js"
   },
-  "dependencies": {
-    "express": "^4.16.3",
-    "typescript": "^2.8.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/express": "^4.11.1"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "express": "^4.16.3"
   }
 }

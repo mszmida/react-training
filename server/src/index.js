@@ -1,9 +1,10 @@
-import * as express from 'express';
+import express from 'express';
+
 import healthCheck from './middlewares/health-check.middleware';
 
-const app: express.Express = express();
+const app = express();
 
-const LISTENING_PORT: number = 3000;
+const LISTENING_PORT = 3000;
 
 app.use(express.json());
 
