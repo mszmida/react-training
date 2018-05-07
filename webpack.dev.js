@@ -24,7 +24,7 @@ module.exports = merge(common, {
                     {
                         loader: "file-loader",
                         options: {
-                            name: '[path][name].[ext]'
+                            name: '[path][name].[hash].[ext]'
                         }
                     }
                 ]
