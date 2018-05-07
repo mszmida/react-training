@@ -1,4 +1,3 @@
 * text eol=lf
 package.json -text
-tsconfig.json -text
 yarn.lock -text
