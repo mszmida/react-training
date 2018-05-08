@@ -35,6 +35,8 @@ module.exports = {
         new CleanWebpackPlugin(["build"]),
         new HtmlWebpackPlugin({
             title: "React training",
+            description: "NETFLIX movie finder",
+            keywords: "netflix, roulette, movies finder",
             template: "index.html"
         })
     ]
