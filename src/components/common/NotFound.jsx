@@ -8,9 +8,7 @@ const NotFound = (props) => {
 
     return (
         <div className="not-found">
-            <div className="container">
-                <p>{ message }</p>
-            </div>
+            <p>{ message }</p>
         </div>
     );
 }

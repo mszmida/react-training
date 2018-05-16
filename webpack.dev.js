@@ -20,11 +20,14 @@ module.exports = merge(common, {
             {
                 test: /\.scss$/,
                 use: [
-                    { loader: "style-loader/url" },
+                    {
+                        loader: "style-loader/url"
+                    },
                     {
                         loader: "file-loader",
                         options: {
-                            name: "[path][name].[hash].css"
+                            name: "[name].[hash].css",
+                            outputPath: "assets/"
                         }
                     },
                     {

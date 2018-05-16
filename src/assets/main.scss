@@ -1,5 +1,32 @@
 @import "~normalize-scss/sass/normalize/import-now";
+@import "~flexboxgrid-sass/flexboxgrid";
 
+html,
 body {
-    background-color: lightgray;
+  width: 100%;
+  height: 100%;
+}
+
+.page-wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 15px 50px;
+}
+
+.button {
+    border: none;
+    background: #414141;
+    font-size: 14px;
+    padding: 4px 12px;
+    color: #eeeeee;
+    text-transform: uppercase;
+    border-radius: 3px;
+
+    &.active {
+        background: #f55263;
+    }
 }
