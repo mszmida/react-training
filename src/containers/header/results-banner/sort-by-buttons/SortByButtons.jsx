@@ -1,19 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import Input from '../common/Input';
-import Button from '../common/Button';
+import Button from '../../../../components/common/Button';
 
-// import './search-sort-by.scss';
+import './sort-by-buttons.scss';
 
-export default class SearchSortBy extends React.Component {
+export default class SortByButtons extends React.Component {
+    static propTypes = {
+        onSortByChange: PropTypes.func.isRequired,
+        sortBy: PropTypes.oneOf(['release', 'rating']).isRequired,
+    }
+
     handleSortBy = (event) => {
         const { type } = event.target.dataset;
 
         console.log('Sort by: ', type);
-
-        if (!type) {
-            return;
-        }
 
         this.props.onSortByChange(type);
     }
@@ -23,14 +24,14 @@ export default class SearchSortBy extends React.Component {
     }
 
     render() {
-        console.log('rendering SearchSortBy ...');
+        console.log('rendering SortByButtons ...');
 
         return (
-            <div className="search-sort-by-container">
-                <span>Sort by</span>
+            <div className="sort-by">
+                <span className="sort-by-title">Sort by</span>
 
                 <Button
-                    className="sort-btn"
+                    className="button sort-by-button"
                     content="release date"
                     dataType="release"
                     isActive={ this.isActive('release') }
@@ -38,7 +39,7 @@ export default class SearchSortBy extends React.Component {
                 />
 
                 <Button
-                    className="sort-btn"
+                    className="button sort-by-button"
                     content="rating"
                     dataType="rating"
                     isActive={ this.isActive('rating') }

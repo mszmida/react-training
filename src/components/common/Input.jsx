@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const Input = (props) => {
     const {
         id,
+        className,
         name,
         title,
         type,
@@ -13,11 +14,12 @@ const Input = (props) => {
     } = props;
 
     return (
-        <div className="form-container">
+        <div className="form-input-container">
             <label htmlFor={ id }>{ title }</label>
 
             <input
                 id={ id }
+                className={ className }
                 name={ name }
                 type={ type }
                 value={ value }
@@ -29,6 +31,7 @@ const Input = (props) => {
 
 Input.propTypes = {
     id: PropTypes.string.isRequired,
+    className: PropTypes.string,
     name: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['text']).isRequired,
     title: PropTypes.string.isRequired,

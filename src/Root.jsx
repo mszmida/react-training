@@ -1,8 +1,9 @@
 import React from 'react';
 
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-import SearchContainer from './components/search/SearchContainer';
-import SearchResults from './components/search-results/SearchResults';
+import Header from './containers/header/Header';
+import MoviesList from './containers/movies-list/MoviesList';
+import Footer from './containers/footer/Footer';
 
 import './assets/main.scss';
 
@@ -11,7 +12,8 @@ export default class Root extends React.Component {
         super(props);
 
         this.state = {
-            searchResults: undefined
+            searchResults: undefined,
+            movieData: undefined
         };
     }
 
@@ -21,27 +23,30 @@ export default class Root extends React.Component {
         });
     }
 
+    handleMovieClick = (movieId) => {
+        const { searchResults } = this.state;
+
+        if (!searchResults) {
+            return null;
+        }
+
+        const movieData = searchResults.find((movie) => {
+            return movie.id === movieId;
+        });
+
+        this.setState({ movieData });
+    }
+
     render() {
         return (
             <ErrorBoundary>
-                <div className="header">
-                    <div className="container">
-                        <p className="logo">netflixroulette</p>
+                <div className="page-wrapper">
+                    <Header
+                        onSearchResultsFetch={ this.handleSearchResults } movieData={ this.state.movieData } />
 
-                        <SearchContainer onSearchResultsGet={ this.handleSearchResults } />
-                    </div>
-                </div>
+                    <MoviesList movies={ this.state.searchResults } onMovieClick={ this.handleMovieClick }/>
 
-                <div className="content">
-                    <div className="container">
-                        <SearchResults movies={ this.state.searchResults } />
-                    </div>
-                </div>
-
-                <div className="footer">
-                    <div className="container">
-                        <p className="logo">netflixroulette</p>
-                    </div>
+                    <Footer />
                 </div>
             </ErrorBoundary>
         );
