@@ -35,16 +35,14 @@ export default class SearchByButtons extends React.Component {
                     content="title"
                     dataType="title"
                     isActive={ this.isActive('title') }
-                    onClickHandler={ this.handleSearchBy }
-                />
+                    onClickHandler={ this.handleSearchBy } />
 
                 <Button
                     className="button search-by-button"
                     content="genre"
                     dataType="genre"
                     isActive={ this.isActive('genre') }
-                    onClickHandler={ this.handleSearchBy }
-                />
+                    onClickHandler={ this.handleSearchBy } />
             </div>
         );
     };

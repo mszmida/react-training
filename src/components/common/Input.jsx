@@ -9,8 +9,8 @@ const Input = (props) => {
         title,
         type,
         value,
-        onChangeHandler,
-        placeholder
+        placeholder,
+        onChangeHandler
     } = props;
 
     return (
@@ -23,11 +23,11 @@ const Input = (props) => {
                 name={ name }
                 type={ type }
                 value={ value }
-                onChange={ onChangeHandler }
-                placeholder={ placeholder } />
+                placeholder={ placeholder }
+                onChange={ onChangeHandler } />
         </div>
     );
-}
+};
 
 Input.propTypes = {
     id: PropTypes.string.isRequired,

@@ -35,16 +35,14 @@ export default class SortByButtons extends React.Component {
                     content="release date"
                     dataType="release"
                     isActive={ this.isActive('release') }
-                    onClickHandler={ this.handleSortBy }
-                />
+                    onClickHandler={ this.handleSortBy } />
 
                 <Button
                     className="button sort-by-button"
                     content="rating"
                     dataType="rating"
                     isActive={ this.isActive('rating') }
-                    onClickHandler={ this.handleSortBy }
-                />
+                    onClickHandler={ this.handleSortBy } />
             </div>
         );
     }

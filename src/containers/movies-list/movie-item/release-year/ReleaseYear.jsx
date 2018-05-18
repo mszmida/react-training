@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ReleaseYear = (props) => {
-    const { releaseDate } = props;
-
-    return (
-        <span>{ new Date(releaseDate).getFullYear() }</span>
-    );
-};
+const ReleaseYear = ({ releaseDate }) => <span>{ releaseDate.getFullYear() }</span>;
 
 ReleaseYear.propTypes = {
-    releaseDate: PropTypes.string.isRequired
+    releaseDate: PropTypes.instanceOf(Date)
 };
 
 export default ReleaseYear;

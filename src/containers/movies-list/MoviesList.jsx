@@ -6,34 +6,28 @@ import MovieItem from './movie-item/MovieItem';
 
 import './movies-list.scss';
 
-export default class MoviesList extends React.Component {
-    static propTypes = {
-        onMovieClick: PropTypes.func.isRequired
+const MoviesList = ({ movies, onMovieClick }) => {
+    console.log('rendering MoviesList ...');
+
+    if (!movies) {
+        return null;
     }
 
-    handleMovieItemClick = (event) => {
-        const { movieId } = event.currentTarget.dataset;
-
-        this.props.onMovieClick(Number(movieId));
+    if (movies.length === 0) {
+        return <NotFound message="No movies has been found"/>;
     }
 
-    render() {
-        console.log('rendering MoviesList ...');
-
-        const { movies } = this.props;
-
-        if (!movies) {
-            return null;
-        }
-
-        if (movies.length === 0) {
-            return <NotFound message="No movies has been found"/>;
-        }
-
-        return (
-            <div className="movies-list">
-                { movies.map( movie => <MovieItem key={ movie.id } { ...movie } onClickHandler={ this.handleMovieItemClick } /> ) }
-            </div>
-        );
-    }
+    return (
+        <div className="movies-list">
+            { movies.map(
+                movie => <MovieItem key={ movie.id } { ...movie } onClickHandler={ onMovieClick } />
+            ) }
+        </div>
+    );
 }
+
+MoviesList.propTypes = {
+    onMovieClick: PropTypes.func.isRequired
+};
+
+export default MoviesList;

@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 
 import './poster.scss';
 
-const Poster = (props) => {
-    const {
-        posterPath,
-        title
-    } = props;
-
+const Poster = ({ posterPath, title }) => {
     return(
         <img className="movie-item-poster" src={ posterPath } alt={ `Poster of ${ title }` } />
     );
