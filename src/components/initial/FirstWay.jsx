@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function FirstWayComponent() {
+const FirstWayComponent = () => {
     const code = React.createElement(
         'code',
         null,
@@ -14,4 +14,6 @@ export function FirstWayComponent() {
         code,
         ' function.'
     );
-}
+};
+
+export default FirstWayComponent;
