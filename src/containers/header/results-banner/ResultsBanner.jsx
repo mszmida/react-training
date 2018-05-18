@@ -21,21 +21,17 @@ const ResultsBanner = (props) => {
             <div className="row">
                 <div className="col-xs">
                     <div className="results-banner-info">
-                        <MoviesGenre genre={ genre } />
+                        { genre && <MoviesGenre genre={ genre } /> }
 
-                        {
-                            !genre &&
-                                <MoviesQuantity quantity={ resultsQuantity } />
-                        }
+                        { !genre && resultsQuantity && <MoviesQuantity quantity={ resultsQuantity } /> }
                     </div>
                 </div>
 
                 <div className="col-xs">
-                    {
-                        !genre &&
-                            <SortByButtons
-                                onSortByChange={ onSortByChange }
-                                sortBy={ sortBy } />
+                    { !genre &&
+                        <SortByButtons
+                            onSortByChange={ onSortByChange }
+                            sortBy={ sortBy } />
                     }
                 </div>
             </div>

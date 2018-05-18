@@ -5,9 +5,7 @@ import Input from '../../../../components/common/Input';
 
 import './search-bar.scss';
 
-const SearchBar = (props) => {
-    const { onSearchBarChange } = props;
-
+const SearchBar = ({ onSearchBarChange }) => {
     console.log('rendering SearchBar ...');
 
     return (
@@ -17,8 +15,8 @@ const SearchBar = (props) => {
             name="movie"
             type="text"
             title="Find your movie"
-            onChangeHandler={ onSearchBarChange }
             placeholder="Type your movie"
+            onChangeHandler={ onSearchBarChange }
         />
     );
 };

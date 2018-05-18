@@ -13,7 +13,7 @@ export default class Root extends React.Component {
 
         this.state = {
             searchResults: undefined,
-            movieData: undefined
+            movieDetails: undefined
         };
     }
 
@@ -23,18 +23,33 @@ export default class Root extends React.Component {
         });
     }
 
-    handleMovieClick = (movieId) => {
+    handleMovieClick = (event) => {
         const { searchResults } = this.state;
 
         if (!searchResults) {
             return null;
         }
 
+        const { movieId } = event.currentTarget.dataset;
+        const movieIdNumber = Number(movieId);
+
         const movieData = searchResults.find((movie) => {
-            return movie.id === movieId;
+            return movie.id === movieIdNumber;
         });
 
-        this.setState({ movieData });
+        if(!movieData) {
+            return null;
+        }
+
+        this.setState({
+            movieDetails: movieData
+        });
+    }
+
+    handleSearchReturn = () => {
+        this.setState({
+            movieDetails: null
+        });
     }
 
     render() {
@@ -42,7 +57,9 @@ export default class Root extends React.Component {
             <ErrorBoundary>
                 <div className="page-wrapper">
                     <Header
-                        onSearchResultsFetch={ this.handleSearchResults } movieData={ this.state.movieData } />
+                        onSearchResultsFetch={ this.handleSearchResults }
+                        onSearchReturn={ this.handleSearchReturn }
+                        movieData={ this.state.movieDetails } />
 
                     <MoviesList movies={ this.state.searchResults } onMovieClick={ this.handleMovieClick }/>
 

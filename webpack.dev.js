@@ -27,7 +27,7 @@ module.exports = merge(common, {
                         loader: "file-loader",
                         options: {
                             name: "[name].[hash].css",
-                            outputPath: "assets/"
+                            outputPath: "assets/css"
                         }
                     },
                     {

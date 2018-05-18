@@ -9,9 +9,9 @@ import Genres from './genres/Genres';
 const MovieItem = (props) => {
     const {
         id,
-        poster_path,
+        poster_path: posterPath,
         title,
-        release_date,
+        release_date: releaseDate,
         genres,
         onClickHandler
     } = props;
@@ -21,7 +21,7 @@ const MovieItem = (props) => {
     return (
         <div className="movie-item" data-movie-id={ id } onClick={ onClickHandler }>
             <Poster
-                posterPath={ poster_path }
+                posterPath={ posterPath }
                 title={ title } />
 
             <div className="row">
@@ -30,14 +30,14 @@ const MovieItem = (props) => {
                 </div>
 
                 <div className="col-xs">
-                    <ReleaseYear releaseDate={ release_date } />
+                    <ReleaseYear releaseDate={ new Date(releaseDate) } />
                 </div>
             </div>
 
             <Genres genres={ genres } />
         </div>
     );
-}
+};
 
 MovieItem.propTypes = {
     onClickHandler: PropTypes.func.isRequired,

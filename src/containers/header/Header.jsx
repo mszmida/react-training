@@ -32,8 +32,8 @@ export default class Header extends React.Component {
         });
     }
 
-    handleSearchReturnClick = () => {
-        console.log('Return to search form');
+    handleSearchReturn = () => {
+        this.props.onSearchReturn();
     }
 
     handleSearchByChange = (type) => {
@@ -66,30 +66,35 @@ export default class Header extends React.Component {
         const { movieData } = this.props;
         const { resultsQuantity } = this.state;
 
-        const content = !movieData ?
-            <SearchForm
-                onSearchBarChange={ this.handleSearchBarChange }
-                onSearchByChange={ this.handleSearchByChange }
-                onSearchButtonClick={ this.handleSearchButtonClick }
-                searchBy={ this.state.searchBy } />
-            : <MovieDetails  { ...movieData } />;
         const genre = movieData && movieData.genres && movieData.genres[0];
 
         return (
             <div className="header">
                 <div className="header-content">
-                    <Logo />
+                    <div className="row">
+                        <div className="col-xs">
+                            <Logo />
+                        </div>
 
-                    {
-                        movieData &&
-                        <Button
-                            className="button search-return-button"
-                            content="Search"
-                            onClickHandler={ this.handleSearchReturnClick }
-                        />
+                        { movieData &&
+                            <div className="col-xs header-search-return">
+                                <Button
+                                    className="button search-return-button"
+                                    content="Search"
+                                    onClickHandler={ this.handleSearchReturn } />
+                            </div>
+                        }
+                    </div>
+
+                    { !movieData &&
+                        <SearchForm
+                            onSearchBarChange={ this.handleSearchBarChange }
+                            onSearchByChange={ this.handleSearchByChange }
+                            onSearchButtonClick={ this.handleSearchButtonClick }
+                            searchBy={ this.state.searchBy } />
                     }
 
-                    { content }
+                    { movieData && <MovieDetails  { ...movieData } /> }
                 </div>
 
                 <ResultsBanner

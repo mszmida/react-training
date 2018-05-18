@@ -34,6 +34,6 @@ const SearchForm = (props) => {
             </div>
         </form>
     );
-}
+};
 
 export default SearchForm;
