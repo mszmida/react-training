@@ -1,8 +1,7 @@
 @import "~normalize-scss/sass/normalize/import-now";
 @import "~flexboxgrid-sass/flexboxgrid";
 
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
 }
@@ -10,11 +9,7 @@ body {
 .page-wrapper{
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.container {
-    margin: 0 auto;
-    padding: 15px 50px;
+    padding: 10px 30px;
 }
 
 .button {

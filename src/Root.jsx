@@ -1,9 +1,14 @@
 import React from 'react';
 
+import Logo from './common/components/logo/Logo';
+import Button from './common/components/Button';
+
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-import Header from './containers/header/Header';
-import MoviesList from './containers/movies-list/MoviesList';
-import Footer from './containers/footer/Footer';
+import Header from './components/header/Header';
+import SearchContainer from './containers/SearchContainer';
+import MovieDetailsBox from './components/movie-details-box/MovieDetailsBox';
+import MoviesList from './components/movies-list/MoviesList';
+import Footer from './components/footer/Footer';
 
 import './assets/main.scss';
 
@@ -12,38 +17,9 @@ export default class Root extends React.Component {
         super(props);
 
         this.state = {
-            searchResults: undefined,
-            movieDetails: undefined
+            movies: [],
+            movieDetails: null
         };
-    }
-
-    handleSearchResults = (data) => {
-        this.setState({
-            searchResults: data
-        });
-    }
-
-    handleMovieClick = (event) => {
-        const { searchResults } = this.state;
-
-        if (!searchResults) {
-            return null;
-        }
-
-        const { movieId } = event.currentTarget.dataset;
-        const movieIdNumber = Number(movieId);
-
-        const movieData = searchResults.find((movie) => {
-            return movie.id === movieIdNumber;
-        });
-
-        if(!movieData) {
-            return null;
-        }
-
-        this.setState({
-            movieDetails: movieData
-        });
     }
 
     handleSearchReturn = () => {
@@ -52,18 +28,64 @@ export default class Root extends React.Component {
         });
     }
 
+    handleSearchResults = (movies) => {
+        this.setState({ movies });
+    }
+
+    handleMovieClick = (event) => {
+        const { movies } = this.state;
+
+        if (!movies) {
+            return null;
+        }
+
+        const { movieId } = event.currentTarget.dataset;
+        const movieIdNumber = Number(movieId);
+
+        const movieDetails = movies.find((movie) => {
+            return movie.id === movieIdNumber;
+        });
+
+        if(!movieDetails) {
+            return null;
+        }
+
+        this.setState({ movieDetails });
+    }
+
     render() {
+        const { movies, movieDetails } = this.state;
+
+        const genre = movieDetails && movieDetails.genres && movieDetails.genres[0];
+
         return (
             <ErrorBoundary>
                 <div className="page-wrapper">
                     <Header
-                        onSearchResultsFetch={ this.handleSearchResults }
-                        onSearchReturn={ this.handleSearchReturn }
-                        movieData={ this.state.movieDetails } />
+                        topLeft={ <Logo /> }
+                        topRight={ movieDetails &&
+                            <Button
+                                className="button search-return-button"
+                                content="Search"
+                                onClickHandler={ this.handleSearchReturn } /> } >
 
-                    <MoviesList movies={ this.state.searchResults } onMovieClick={ this.handleMovieClick }/>
+                        { !movieDetails &&
+                            <SearchContainer
+                                onSearchResultsFetch={ this.handleSearchResults } />
+                        }
 
-                    <Footer />
+                        { movieDetails &&
+                            <MovieDetailsBox
+                                { ...movieDetails }
+                                genre={ genre } />
+                        }
+                    </Header>
+
+                    <MoviesList movies={ movies } onMovieClick={ this.handleMovieClick } />
+
+                    <Footer>
+                        <Logo />
+                    </Footer>
                 </div>
             </ErrorBoundary>
         );

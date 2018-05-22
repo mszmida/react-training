@@ -1,0 +1,27 @@
+.search-form {
+    margin: 0 70px 15px;
+}
+
+.search-form label {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.search-form-bar {
+    box-sizing: border-box;
+    background: #222222;
+    border: none;
+    border-bottom: 3px solid #f55263;
+    color: #eeeeee;
+    padding: 1em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.search-form-button.button {
+    display: block;
+    margin-left: auto;
+    padding: 8px 50px;
+}
