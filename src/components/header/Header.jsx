@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ErrorBoundary from '../../common/components/error-boundary/ErrorBoundary';
+
 import './header.scss';
 
 const Header = ({ topLeft, topRight, children }) => {
@@ -23,7 +25,9 @@ const Header = ({ topLeft, topRight, children }) => {
                 </div>
             </div>
 
-            { children }
+            <ErrorBoundary>
+                { children }
+            </ErrorBoundary>
         </div>
     );
 };

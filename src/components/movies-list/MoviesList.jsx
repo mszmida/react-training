@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ErrorBoundary from '../../common/components/error-boundary/ErrorBoundary';
 import NotFound from '../../common/components/not-found/NotFound';
 import MovieItem from './movie-item/MovieItem';
 
@@ -19,9 +20,11 @@ const MoviesList = ({ movies, onMovieClick }) => {
 
     return (
         <div className="movies-list">
-            { movies.map(
-                movie => <MovieItem key={ movie.id } { ...movie } onClickHandler={ onMovieClick } />
-            ) }
+            <ErrorBoundary>
+                { movies.map(
+                    movie => <MovieItem key={ movie.id } { ...movie } onClickHandler={ onMovieClick } />
+                ) }
+            </ErrorBoundary>
         </div>
     );
 }
