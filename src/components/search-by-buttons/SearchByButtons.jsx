@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from '../../common/components/Button';
+import Button from '../../common/components/button/Button';
 
 import './search-by-buttons.scss';
 
@@ -12,21 +12,19 @@ const isActive = (searchBy, type) => {
 const SearchByButtons = (props) => {
     const { searchBy, onSearchByChange } = props;
 
-    console.log('rendering SearchByButtons ...');
-
     return (
         <div className="search-by">
-            <span className="search-by-title">Search By</span>
+            <span className="search-by__title">Search By</span>
 
             <Button
-                className="button search-by-button"
+                className="button search-by__button"
                 content="title"
                 dataType="title"
                 isActive={ isActive(searchBy, 'title') }
                 onClickHandler={ onSearchByChange } />
 
             <Button
-                className="button search-by-button"
+                className="button search-by__button"
                 content="genre"
                 dataType="genre"
                 isActive={ isActive(searchBy, 'genre') }

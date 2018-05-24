@@ -14,39 +14,29 @@ const MovieDetails = (props) => {
         overview
     } = props;
 
-    console.log('rendering MovieDetails ...');
-
-    return(
+    return (
         <div className="movie-details">
-            <div className="row">
-                <div className="col-xs-3">
-                    <img className="movie-details-poster" src={ posterPath } alt={ `Poster of ${title}` } />
+            <div className="row around-xs">
+                <div className="col-sm-3">
+                    <img className="movie-details__poster" src={ posterPath } alt={ `Poster of ${title}` } />
                 </div>
 
-                <div className="col-xs-9">
-                    <div className="movie-details-info">
-                        <div className="row">
-                            <div className="col-xs-3">
-                                <span className="movie-details-title">{ title }</span>
-                                <span className="movie-details-tagline">{ tagline }</span>
-                            </div>
+                <div className="col-sm-9">
+                    <div className="movie-details__info">
+                        <h2 className="movie-details__title">{ title }</h2>
+                        <span className="movie-details__rating">{ voteAverage }</span>
 
-                            <div className="col-xs-9">
-                                <span className="movie-details-rating">{ voteAverage }</span>
-                            </div>
+                        { tagline &&
+                            <p className="movie-details__tagline">{ tagline }</p>
+                        }
+
+                        <div className="movie-details__year-duration">
+                            <span>{ new Date(releaseDate).getFullYear() }</span>
+
+                            <span>{ runtime } min</span>
                         </div>
 
-                        <div className="row movie-details-year-duration">
-                            <div className="col-xs-1">
-                                <span className="movie-details-year">{ new Date(releaseDate).getFullYear() }</span>
-                            </div>
-
-                            <div className="col-xs-9">
-                                <span className="movie-details-duration">{ runtime } min</span>
-                            </div>
-                        </div>
-
-                        <div className="movie-details-overview">{ overview }</div>
+                        <p>{ overview }</p>
                     </div>
                 </div>
             </div>
@@ -55,7 +45,7 @@ const MovieDetails = (props) => {
 };
 
 MovieDetails.defaultProps = {
-    posterPath: 'http://via.placeholder.com/200x300'
+    posterPath: 'http://via.placeholder.com/270x380'
 };
 
 MovieDetails.propTypes = {

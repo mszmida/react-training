@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '../../common/components/Input';
-import Button from '../../common/components/Button';
+import Button from '../../common/components/button/Button';
 import SearchByButtons from '../search-by-buttons/SearchByButtons';
 
 import './search-form.scss';
@@ -52,7 +52,7 @@ export default class SearchForm extends React.Component {
             <form action="" className="search-form">
                 <Input
                     id="movie-search-bar"
-                    className="search-form-bar"
+                    className="search-form__bar"
                     name="movie"
                     type="text"
                     title="Find your movie"
@@ -68,8 +68,9 @@ export default class SearchForm extends React.Component {
 
                     <div className="col-xs">
                         <Button
-                            className="button search-form-button active"
+                            className="button search-form__button"
                             content="search"
+                            isActive={ true }
                             onClickHandler={ this.handleSearchButtonClick } />
                     </div>
                 </div>
@@ -77,4 +78,3 @@ export default class SearchForm extends React.Component {
         );
     }
 };
-

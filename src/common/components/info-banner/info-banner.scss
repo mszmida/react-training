@@ -1,5 +1,7 @@
+@import '../../styles/variables';
+
 .info-banner{
-    background: #eeeeee;
+    background: $lightGray;
     font-weight: bold;
     padding: 10px 0;
     min-height: 20px;

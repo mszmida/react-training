@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './button.scss';
+
 const Button = (props) => {
     const {
         className,
@@ -14,7 +16,7 @@ const Button = (props) => {
 
     return (
         <button
-            className={ classNames(className, { 'active': isActive }) }
+            className={ classNames(className, { 'button--active': isActive }) }
             type={ type }
             data-type={dataType}
             onClick={ onClickHandler } >
