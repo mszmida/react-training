@@ -12,8 +12,7 @@ export default class SearchContainer extends React.Component {
         super(props);
 
         this.state = {
-            sortBy: 'release',
-            resultsQuantity: 0
+            sortBy: 'release'
         };
     }
 
@@ -22,17 +21,13 @@ export default class SearchContainer extends React.Component {
         const { onSearchResultsFetch } = this.props;
 
         const searchOptions = {
-            sortBy,
-            ...options
+            ...options,
+            sortBy
         };
 
         console.log('Searching ...', searchOptions);
 
         const { data } = moviesMock;
-
-        this.setState({
-            resultsQuantity: data.length
-        });
 
         onSearchResultsFetch(data);
     }
@@ -48,7 +43,8 @@ export default class SearchContainer extends React.Component {
     }
 
     render() {
-        const { resultsQuantity, sortBy } = this.state;
+        const { sortBy } = this.state;
+        const { resultsQuantity } = this.props;
 
         return (
             <React.Fragment>
@@ -57,12 +53,12 @@ export default class SearchContainer extends React.Component {
 
                 <InfoBanner>
                     { resultsQuantity !== 0 &&
-                        <div className="row">
-                            <div className="col-xs">
+                        <div className="row middle-xs">
+                            <div className="col-xs center-xs">
                                 <MoviesQuantity quantity={ resultsQuantity } />
                             </div>
 
-                            <div className="col-xs">
+                            <div className="col-xs center-xs">
                                 <SortByButtons
                                     onSortByChange={ this.handleSortByChange }
                                     sortBy={ sortBy } />

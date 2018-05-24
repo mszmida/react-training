@@ -5,20 +5,18 @@ import ErrorBoundary from '../../common/components/error-boundary/ErrorBoundary'
 import './header.scss';
 
 const Header = ({ topLeft, topRight, children }) => {
-    console.log('rendering Header ...');
-
     return (
         <div className="header">
-            <div className="header-top">
+            <div className="header__top">
                 <div className="row">
                     <div className="col-xs">
-                        <div className="header-top-left">
+                        <div className="header__top-left">
                             { topLeft }
                         </div>
                     </div>
 
-                    <div className="col-xs">
-                        <div className="header-top-right">
+                    <div className="col-xs end-xs">
+                        <div className="header__top-right">
                             { topRight }
                         </div>
                     </div>

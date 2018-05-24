@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Logo from './common/components/logo/Logo';
-import Button from './common/components/Button';
+import Button from './common/components/button/Button';
 
 import Header from './components/header/Header';
 import SearchContainer from './containers/SearchContainer';
@@ -9,7 +9,7 @@ import MovieDetailsBox from './components/movie-details-box/MovieDetailsBox';
 import MoviesList from './components/movies-list/MoviesList';
 import Footer from './components/footer/Footer';
 
-import './assets/main.scss';
+import './main.scss';
 
 export default class Root extends React.Component {
     constructor(props) {
@@ -41,13 +41,25 @@ export default class Root extends React.Component {
         const { movieId } = event.currentTarget.dataset;
         const movieIdNumber = Number(movieId);
 
-        const movieDetails = movies.find((movie) => {
+        const movieData = movies.find(movie => {
             return movie.id === movieIdNumber;
         });
 
-        if(!movieDetails) {
+        if (!movieData) {
             return null;
         }
+
+        const movieDetails = { };
+
+        ({
+            poster_path: movieDetails.posterPath,
+            title: movieDetails.title,
+            tagline: movieDetails.tagline,
+            vote_average: movieDetails.voteAverage,
+            release_date: movieDetails.releaseDate,
+            runtime: movieDetails.runtime,
+            overview: movieDetails.overview
+        } = movieData);
 
         this.setState({ movieDetails });
     }
@@ -63,12 +75,13 @@ export default class Root extends React.Component {
                     topLeft={ <Logo /> }
                     topRight={ movieDetails &&
                         <Button
-                            className="button search-return-button"
+                            className="button button--inversed-active"
                             content="Search"
                             onClickHandler={ this.handleSearchReturn } /> } >
 
                     { !movieDetails &&
                         <SearchContainer
+                            resultsQuantity={ movies.length }
                             onSearchResultsFetch={ this.handleSearchResults } />
                     }
 

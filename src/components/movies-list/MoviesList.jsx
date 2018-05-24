@@ -8,8 +8,6 @@ import MovieItem from './movie-item/MovieItem';
 import './movies-list.scss';
 
 const MoviesList = ({ movies, onMovieClick }) => {
-    console.log('rendering MoviesList ...');
-
     if (!movies) {
         return null;
     }
@@ -18,14 +16,30 @@ const MoviesList = ({ movies, onMovieClick }) => {
         return <NotFound message="No movies has been found"/>;
     }
 
+    let movieDetails;
+
+    const movieItems = movies.map(
+        movie => {
+            movieDetails = { };
+
+            ({
+                id: movieDetails.id,
+                poster_path: movieDetails.posterPath,
+                title: movieDetails.title,
+                release_date: movieDetails.releaseDate,
+                genres: movieDetails.genres
+            } = movie);
+
+            return <MovieItem key={ movie.id } { ...movieDetails } onClickHandler={ onMovieClick } />
+        }
+    );
+
     return (
-        <div className="movies-list">
-            <ErrorBoundary>
-                { movies.map(
-                    movie => <MovieItem key={ movie.id } { ...movie } onClickHandler={ onMovieClick } />
-                ) }
-            </ErrorBoundary>
-        </div>
+        <ErrorBoundary>
+            <div className="movies-list">
+                { movieItems }
+            </div>
+        </ErrorBoundary>
     );
 }
 

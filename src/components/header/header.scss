@@ -1,12 +1,8 @@
 .header {
     background: lightgray;
-}
 
-.header-top {
-    margin: 0 70px 40px;
-    padding-top: 20px;
-}
-
-.header-top-right {
-    text-align: right;
+    &__top {
+        margin: 0 70px 40px;
+        padding-top: 20px;
+    }
 }

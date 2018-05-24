@@ -1,46 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Poster from './poster/Poster';
-import Title from './title/Title';
-import ReleaseYear from './release-year/ReleaseYear';
-import Genres from './genres/Genres';
+import './movie-item.scss';
 
 const MovieItem = (props) => {
     const {
         id,
-        poster_path: posterPath,
+        posterPath,
         title,
-        release_date: releaseDate,
+        releaseDate,
         genres,
         onClickHandler
     } = props;
 
-    console.log('rendering MovieItem ...');
-
     return (
         <div className="movie-item" data-movie-id={ id } onClick={ onClickHandler }>
-            <Poster
-                posterPath={ posterPath }
-                title={ title } />
+            <img className="movie-item__poster" src={ posterPath } alt={ `Poster of ${ title }` } />
 
-            <div className="row">
-                <div className="col-xs">
-                    <Title title={ title } />
+            <div className="movie-item__info">
+                <div className="movie-item__header">
+                    <div className="row">
+                        <div className="col-sm-9">
+                            <h3 className="movie-item__title">{ title }</h3>
+                        </div>
+
+                        <div className="col-sm-3 end-xs">
+                            <span className="movie-item__year">{ new Date(releaseDate).getFullYear() }</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="col-xs">
-                    <ReleaseYear releaseDate={ new Date(releaseDate) } />
-                </div>
+                <p>{ genres.join(' & ') }</p>
             </div>
-
-            <Genres genres={ genres } />
         </div>
     );
 };
 
+MovieItem.defaultProps = {
+    posterPath: 'http://via.placeholder.com/350x450'
+};
+
 MovieItem.propTypes = {
-    onClickHandler: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
+    posterPath: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired,
+    onClickHandler: PropTypes.func.isRequired
 };
 
 export default MovieItem;

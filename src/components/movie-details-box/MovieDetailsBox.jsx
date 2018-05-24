@@ -5,24 +5,11 @@ import MovieDetails from '../movie-details/MovieDetails';
 import MoviesGenre from '../movies-genre/MoviesGenre';
 
 const MovieDetailsBox = (props) => {
-    const { genre } = props;
-    const movieDetailsProps = { };
-
-    ({
-        poster_path: movieDetailsProps.posterPath,
-        title: movieDetailsProps.title,
-        tagline: movieDetailsProps.tagline,
-        vote_average: movieDetailsProps.voteAverage,
-        release_date: movieDetailsProps.releaseDate,
-        runtime: movieDetailsProps.runtime,
-        overview: movieDetailsProps.overview
-    } = props);
-
-    console.log('Rendering MovieDetailsBox ...');
+    const { genre, ...movieDetails } = props;
 
     return (
         <React.Fragment>
-            <MovieDetails { ...movieDetailsProps } />
+            <MovieDetails { ...movieDetails } />
 
             <InfoBanner>
                 <MoviesGenre genre={ genre } />

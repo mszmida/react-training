@@ -29,12 +29,12 @@ export default class ErrorBoundary extends React.Component {
 
         return (
             <div className="error-boundary">
-                <div className="error-boundary-message">
+                <div className="error-boundary__message">
                     <span>An error occured:</span>
                     <pre>{ error.message }</pre>
                 </div>
 
-                <div className="error-boundary-stack">
+                <div className="error-boundary__stack">
                     <span>Stack trace:</span>
                     <pre>{ info.componentStack }</pre>
                 </div>
